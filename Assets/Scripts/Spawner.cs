@@ -6,7 +6,7 @@ public class Spawner : MonoBehaviour
 {
     public GameObject[] cubes;
     public Transform[] points;
-    public float beat = (60/130)*2;
+    public float beat = (60/105)*2;
     private float timer;
 
 

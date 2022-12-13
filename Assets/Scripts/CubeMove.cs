@@ -10,4 +10,13 @@ public class CubeMove : MonoBehaviour
     {
         transform.position += Time.deltaTime * transform.forward *(-2);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Deletezone")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
 }
