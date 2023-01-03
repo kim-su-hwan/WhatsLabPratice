@@ -17,6 +17,13 @@ public class CubeMove : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (other.gameObject.tag == "MainCamera")
+        {
+            other.gameObject.GetComponent<PointCal>().AddScore(1);
+            Debug.Log("check");
+            Destroy(this.gameObject);
+
+        }
     }
 
 }
