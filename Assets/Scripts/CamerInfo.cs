@@ -6,14 +6,14 @@ using System.Data.Common;
 using System.IO;
 using UnityEngine.Rendering;
 using System.Data;
-using Newtonsoft.Json;
-
+using System;
 [System.Serializable]
 public class SaveData
 {
     public float rot_x;
     public float rot_y;
     public float rot_z;
+    public string time;
 }
 public class CamerInfo : MonoBehaviour
 {
@@ -30,27 +30,27 @@ public class CamerInfo : MonoBehaviour
         //StartCoroutine("SaveTheCoroutine");
     }
 
-    void SaveDataJson(SaveData rot)
-    {
-        //SaveData sd = new SaveData();
-        //sd.rot = rot;
-        //rot += "\n";
-        string jsonData = JsonUtility.ToJson(rot);
-        Debug.Log("--------" + jsonData);
+    //void SaveDataJson(SaveData rot)
+    //{
+    //    //SaveData sd = new SaveData();
+    //    //sd.rot = rot;
+    //    //rot += "\n";
+    //    string jsonData = JsonUtility.ToJson(rot);
+    //    Debug.Log("--------" + jsonData);
+    //    File.WriteAllText(path, jsonData);
+    //    //if (!File.Exists(path))
+    //    //{
+    //    //    File.WriteAllText(path, jsonData);
+    //    //}
+    //    //else
+    //    //{
+    //    //    //string alldata = File.ReadAllText(path);
+    //    //    //alldata += "\n" + jsonData;
+    //    //    File.AppendText(jsonData);
+    //    //    //File.WriteAllText(path, jsonData);
+    //    //}
 
-        if (!File.Exists(path))
-        {
-            File.WriteAllText(path, jsonData);
-        }
-        else
-        {
-            //string alldata = File.ReadAllText(path);
-            //alldata += "\n" + jsonData;
-            File.AppendText(jsonData);
-            //File.WriteAllText(path, jsonData);
-        }
-
-    }
+    //}
 
     void SaveDataJson(Quaternion rot)
     {
@@ -61,20 +61,24 @@ public class CamerInfo : MonoBehaviour
         sd.rot_x = rot.x;
         sd.rot_y = rot.y;
         sd.rot_z = rot.z;
-        string jsonData = JsonUtility.ToJson(rot);
-        Debug.Log("--------" + jsonData);
-
-        if (!File.Exists(path))
-        {
-            File.WriteAllText(path, jsonData);
-        }
-        else
-        {
-            //string alldata = File.ReadAllText(path);
-            //alldata += "\n" + jsonData;
-            File.AppendText(jsonData);
-            //File.WriteAllText(path, jsonData);
-        }
+        sd.time = DateTime.Now.ToString();
+        string jsonData = JsonUtility.ToJson(sd);
+        
+        Debug.Log(DateTime.Now.ToString() + jsonData);
+        //
+        //File.WriteAllText(path, jsonData);
+        File.AppendAllText(path, jsonData);
+        //if (!File.Exists(path))
+        //{
+        //    File.WriteAllText(path, jsonData);
+        //}
+        //else
+        //{
+        //    //string alldata = File.ReadAllText(path);
+        //    //alldata += "\n" + jsonData;
+        //    File.AppendText(jsonData);
+        //    //File.WriteAllText(path, jsonData);
+        //}
 
     }
 
